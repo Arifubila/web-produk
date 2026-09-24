@@ -1,77 +1,540 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ndasmu Peanut</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <title>Ndasmu Peanut | Flaco</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
       rel="stylesheet"
     />
+
+    <style>
+      /* =========================
+         RESET
+      ========================= */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5efe6;
+        color: #24180f;
+        overflow-x: hidden;
+      }
+
+      button {
+        font-family: inherit;
+      }
+
+      /* =========================
+         HERO
+      ========================= */
+
+      .bg1 {
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(226, 167, 91, 0.35),
+            transparent 25%
+          ),
+          #efe2d0;
+        padding: 0 7%;
+      }
+
+      /* =========================
+         NAVBAR
+      ========================= */
+
+      .navbar {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(36, 24, 15, 0.12);
+      }
+
+      .logo h3 {
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: -1.5px;
+        text-transform: lowercase;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 42px;
+        list-style: none;
+      }
+
+      .menu li a {
+        position: relative;
+        text-decoration: none;
+        color: #24180f;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+      }
+
+      .menu li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -7px;
+        width: 0;
+        height: 2px;
+        background: #9b5b28;
+        transition: 0.3s ease;
+      }
+
+      .menu li a:hover::after {
+        width: 100%;
+      }
+
+      .shop {
+        width: 43px;
+        height: 43px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #24180f;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .shop:hover {
+        transform: scale(1.08);
+        background: #9b5b28;
+      }
+
+      .shop i {
+        font-size: 19px;
+      }
+
+      /* =========================
+         HERO CONTENT
+      ========================= */
+
+      .b1 {
+        min-height: calc(100vh - 90px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 60px;
+        padding: 50px 0;
+      }
+
+      .judul {
+        max-width: 600px;
+      }
+
+      .judul::before {
+        content: "HANDCRAFTED FLAVORS";
+        display: block;
+        margin-bottom: 22px;
+        color: #9b5b28;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+
+      .judul h1 {
+        font-size: clamp(55px, 7vw, 100px);
+        line-height: 0.88;
+        letter-spacing: -5px;
+        font-weight: 800;
+        color: #24180f;
+        margin-bottom: 28px;
+      }
+
+      .p1 {
+        max-width: 430px;
+        color: #725c49;
+        font-size: 17px;
+        line-height: 1.7;
+        margin-bottom: 35px;
+      }
+
+      .bt1 {
+        border: none;
+        padding: 16px 25px;
+        border-radius: 50px;
+        background: #24180f;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .bt1:hover {
+        background: #9b5b28;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(36, 24, 15, 0.2);
+      }
+
+      .f1 {
+        width: 100%;
+        max-width: 560px;
+        height: 580px;
+        object-fit: cover;
+        border-radius: 260px 260px 20px 20px;
+        justify-self: end;
+        box-shadow: 20px 25px 50px rgba(62, 39, 20, 0.15);
+        transition: 0.5s ease;
+      }
+
+      .f1:hover {
+        transform: translateY(-8px);
+      }
+
+      /* =========================
+         MARQUEE / BANNER
+      ========================= */
+
+      .b2 {
+        overflow: hidden;
+        background: #24180f;
+        color: #f5efe6;
+        padding: 20px 0;
+      }
+
+      .p2 {
+        display: flex;
+        width: max-content;
+        gap: 50px;
+        animation: marquee 22s linear infinite;
+      }
+
+      .p2 p {
+        white-space: nowrap;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 3px;
+      }
+
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-30%);
+        }
+      }
+
+      /* =========================
+         PRODUCTS
+      ========================= */
+
+      .bg2 {
+        background: #f8f4ee;
+        padding: 100px 7%;
+      }
+
+      .b3 {
+        max-width: 1250px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+      }
+
+      .f2,
+      .f3,
+      .f4 {
+        position: relative;
+        min-height: 530px;
+        padding: 30px;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: 0.4s ease;
+      }
+
+      .f2 {
+        background: #e8d5bd;
+      }
+
+      .f3 {
+        background: #d9c3a4;
+      }
+
+      .f4 {
+        background: #cdb08a;
+      }
+
+      .f2:hover,
+      .f3:hover,
+      .f4:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 45px rgba(58, 39, 20, 0.14);
+      }
+
+      .f2 h1,
+      .f3 h1,
+      .f4 h1 {
+        font-size: 14px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: #4b301c;
+      }
+
+      .f2 img,
+      .f3 img,
+      .f4 img {
+        width: 100%;
+        height: 300px;
+        object-fit: contain;
+        transition: 0.5s ease;
+      }
+
+      .f2:hover img,
+      .f3:hover img,
+      .f4:hover img {
+        transform: scale(1.07) rotate(2deg);
+      }
+
+      /* =========================
+         PRODUCT BUTTONS
+      ========================= */
+
+      .btt {
+        display: flex;
+        gap: 10px;
+      }
+
+      .bt3 {
+        width: 52px;
+        height: 48px;
+        border: 1px solid rgba(36, 24, 15, 0.2);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.3);
+        color: #24180f;
+        font-weight: 700;
+      }
+
+      .bt2 {
+        flex: 1;
+        height: 48px;
+        border: none;
+        border-radius: 10px;
+        background: #24180f;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.7px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .bt2:hover {
+        background: #9b5b28;
+      }
+
+      /* =========================
+         MOBILE
+      ========================= */
+
+      @media (max-width: 900px) {
+        .bg1 {
+          padding: 0 5%;
+        }
+
+        .b1 {
+          grid-template-columns: 1fr;
+          padding: 70px 0;
+          gap: 50px;
+        }
+
+        .judul {
+          max-width: 650px;
+        }
+
+        .f1 {
+          justify-self: center;
+          height: 500px;
+        }
+
+        .b3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .f4 {
+          grid-column: 1 / -1;
+          max-width: 50%;
+          width: 100%;
+          justify-self: center;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .navbar {
+          height: 75px;
+        }
+
+        .menu {
+          display: none;
+        }
+
+        .logo h3 {
+          font-size: 26px;
+        }
+
+        .bg1 {
+          min-height: auto;
+        }
+
+        .b1 {
+          min-height: auto;
+          padding: 65px 0;
+        }
+
+        .judul h1 {
+          font-size: 57px;
+          letter-spacing: -3px;
+        }
+
+        .p1 {
+          font-size: 15px;
+        }
+
+        .f1 {
+          height: 430px;
+          border-radius: 200px 200px 18px 18px;
+        }
+
+        .bg2 {
+          padding: 60px 5%;
+        }
+
+        .b3 {
+          grid-template-columns: 1fr;
+        }
+
+        .f2,
+        .f3,
+        .f4 {
+          min-height: 500px;
+        }
+
+        .f4 {
+          max-width: none;
+          grid-column: auto;
+        }
+      }
+    </style>
   </head>
+
   <body>
-    <!--NAVBAR-->
+    <!-- NAVBAR -->
     <div class="bg1">
       <nav class="navbar">
         <div class="logo">
           <h3>flaco</h3>
         </div>
+
         <ul class="menu">
           <li><a href="#">SHOP</a></li>
           <li><a href="#">OUR STORY</a></li>
           <li><a href="#">CONTACT US</a></li>
         </ul>
+
         <div class="shop">
           <i class="ri-shopping-basket-fill"></i>
         </div>
       </nav>
-      <!--BAGIAN 1-->
+
+      <!-- HERO -->
       <div class="b1">
         <div class="judul">
-          <h1>DISCOVER <br />NEW <br />TASTES</h1>
+          <h1>
+            DISCOVER<br />
+            NEW<br />
+            TASTES
+          </h1>
+
           <div class="p1">
-            Original spice blends sutable for both <br />home and professional
-            cooking
+            Original spice blends suitable for both home and professional
+            cooking.
           </div>
-          <button class="bt1">SHOP ALL PRODUCTS</button>
+
+          <button class="bt1">
+            SHOP ALL PRODUCTS
+            <i class="ri-arrow-right-line"></i>
+          </button>
         </div>
-        <img src="img/f1.jpeg" alt="eror" height="500px" class="f1" />
+
+        <img src="img/f1.jpeg" alt="Flaco peanut product" class="f1" />
       </div>
     </div>
-    <!--BAGIAN 2-->
+
+    <!-- MARQUEE -->
     <div class="b2">
       <div class="p2">
-        <p>PASSION-INTENISTY SWEETNES</p>
-        <p>PASSION-INTENISTY SWEETNES</p>
-        <p>PASSION-INTENISTY SWEETNES</p>
-        <p>PASSION-INTENISTY SWEETNES</p>
+        <p>PASSION • INTENSITY • SWEETNESS</p>
+        <p>PASSION • INTENSITY • SWEETNESS</p>
+        <p>PASSION • INTENSITY • SWEETNESS</p>
+        <p>PASSION • INTENSITY • SWEETNESS</p>
       </div>
     </div>
+
+    <!-- PRODUCTS -->
     <div class="bg2">
       <div class="b3">
+        <!-- PRODUCT 1 -->
         <div class="f2">
           <h1>COSINESS</h1>
-          <img src="img/f2.png" alt="eror" height="300px" />
+
+          <img src="img/f2.png" alt="Cosiness product" />
+
           <div class="btt">
             <button class="bt3">1</button>
-            <button class="bt2">ADD TO CART - $18</button>
+
+            <button class="bt2">ADD TO CART — $18</button>
           </div>
         </div>
+
+        <!-- PRODUCT 2 -->
         <div class="f3">
           <h1>INTENSITY</h1>
-          <img src="img/f3.png" alt="eror" height="300px" />
+
+          <img src="img/f3.png" alt="Intensity product" />
+
           <div class="btt">
             <button class="bt3">1</button>
-            <button class="bt2">ADD TO CART - $18</button>
+
+            <button class="bt2">ADD TO CART — $18</button>
           </div>
         </div>
+
+        <!-- PRODUCT 3 -->
         <div class="f4">
           <h1>PASSION</h1>
-          <img src="img/f4.png" alt="eror" height="300px" />
+
+          <img src="img/f4.png" alt="Passion product" />
+
           <div class="btt">
             <button class="bt3">1</button>
-            <button class="bt2">ADD TO CART - $18</button>
+
+            <button class="bt2">ADD TO CART — $18</button>
           </div>
         </div>
       </div>
